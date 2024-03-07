@@ -1,12 +1,14 @@
-
+import {  selectUser } from "./features/userSlice";
 import { Outlet,Navigate,Route,Routes,useLocation } from "react-router-dom"
-import { Home,Profile,Login,Register,ResetPassword } from "./Pages"
+import { Home,Profile,Login,Register,ResetPassword, Otp } from "./Pages"
 import { useSelector } from "react-redux"
 
 
 
 function Layout(){
-  const {user}=useSelector(state=>state.user)
+  const user = useSelector(selectUser)
+    console.log(user);
+ 
   
   
   const location=useLocation()
@@ -16,13 +18,13 @@ function Layout(){
 }
 
 function App() {
-  const {theme}=useSelector((state)=>state.theme)
+  
   
  
 
   return (
     <>
-<div data-theme={theme} className="w-full min-h-[100vh]">
+<div  className="w-full min-h-[100vh]">
   <Routes>
     <Route element={<Layout/>}>
       <Route path="/" element ={<Home/>}/>
@@ -30,6 +32,8 @@ function App() {
     </Route>
     <Route path="/register" element={<Register/>}/>
     <Route path="/login" element={<Login/>}/>
+    <Route path="/user_otp" element={<Otp/>}/>
+
     <Route path="/rest-password" element={<ResetPassword/>}/>
 
 

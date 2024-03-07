@@ -6,8 +6,8 @@ import { logout, selectUser, signup } from "../../features/userSlice";
 import { IoLogOutSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 const navigation = [
-    { name: 'Books', href: '/', current: true },
-    { name: 'My Books', href: '/my_book', current: false },
+    { name: 'Course', href: '/', current: true },
+    { name: 'My Course', href: '/my_book', current: false },
 
 
 ]

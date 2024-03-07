@@ -1,7 +1,7 @@
 
-import NavBar from '../Components/NavBar/NavBar'
+import NavBar from '../../Components/NavBar/NavBar'
 
-import Login from '../Components/UserAuth/Login'
+import Login from '../../Components/UserAuth/Login'
 
 const SignUpPage = () => {
   return (

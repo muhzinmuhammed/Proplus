@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../../AxiosInterceptor/userAxiosInterceptor'
-import {  signup } from "../../feature/userSlice";
+import {  signup } from "../../features/userSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";

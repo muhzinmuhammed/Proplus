@@ -84,7 +84,7 @@ const Login = () => {
         <div className='mt-3 flex text-sm justify-between items-center '>
                 <p className='border-gray-500'>Don't have Account?</p>
                 <button type='submit' className='py-2 px-4 rounded-xl bg-white border hover:bg-[#002D74] hover:text-white hover:shadow-lg '>
-  <Link to='/signup'>Register</Link></button>
+  <Link to='/register'>Register</Link></button>
             </div>
 
     </div>
