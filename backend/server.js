@@ -7,6 +7,7 @@ import connectToDb from './Connection/config.js';
 
 /*import user router*/
 import userRouter from "./routes/userRouter.js";
+import courseRouter from './routes/courseRouter.js';
 
 
 
@@ -29,6 +30,9 @@ app.use(morgan('tiny'));
 app.use("/api/auth", userRouter);
 /*user route*/
 
+/*user route*/
+app.use("/api/course", courseRouter);
+/*user route*/
 
 
 
