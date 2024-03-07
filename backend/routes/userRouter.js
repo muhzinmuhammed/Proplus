@@ -1,7 +1,8 @@
 import express from "express";
-import { userSignup, loginUser, userSingupVerifyOtp, userProfile } from "../controller/userAuth.js";
+import { userSignup, loginUser, userSingupVerifyOtp, userProfile,googleLogin } from "../controller/userAuth.js";
 
 import { protect } from "../middleware/protection.js";
+
 
 const userRouer = express.Router();
 
@@ -23,6 +24,8 @@ userRouer.post("/signup_verify", userSingupVerifyOtp);
 //**user profile */
 userRouer.get('/user_details/:id', protect, userProfile)
 //**user profile */
+
+userRouer.post("/googlelogin", googleLogin);
 
 
 export default userRouer

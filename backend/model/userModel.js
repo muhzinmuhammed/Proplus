@@ -16,22 +16,22 @@ const userSchema = new Schema(
     },
     phone: {
       type: Number,
-      required: true,
+   
     },
     password: {
       type: String,
       required: true,
     },
+    jti: {
+        type: String,
+      },
     photo: [
       {
         type: String,
       },
     ],
     
-    saved:[{
-      type: Schema.Types.ObjectId,
-      ref: "books",
-    }],
+    
    
     createdAt: {
       type: Date,

@@ -6,9 +6,15 @@ import {useState,useEffect} from 'react'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from '../../AxiosInterceptor/userAxiosInterceptor'
+
 import { useDispatch } from "react-redux";
-import {  signup } from "../../features/userSlice";
+import {  login } from "../../features/userSlice";
 import { useNavigate } from 'react-router-dom';
+import {
+    GoogleOAuthProvider,
+    GoogleLogin,
+    
+  } from "@react-oauth/google";
 
 const Login = () => {
     const navigate=useNavigate()
@@ -43,7 +49,7 @@ const Login = () => {
           localStorage.setItem("userData", JSON.stringify(userdata));
           localStorage.setItem("userToken", JSON.stringify(userdata.token));
     
-          dispatch(signup(userdata));
+          dispatch(login(userdata));
           navigate("/");
     
           toast.success("User created successfully.");
@@ -52,8 +58,34 @@ const Login = () => {
           toast.error("User is blocked or please correct password");
         }
       };
+      const handleGoogleLogin = async (credentialResponse) => {
+        try {
+            const idToken = credentialResponse.credential;
+            console.log(idToken);
+            const response = await axiosInstance.post("/auth/googlelogin", {
+                idToken
+            });
+    
+            const userData = response.data;
+    
+            // Assuming 'dispatch', 'toast', and 'navigate' are properly defined and accessible
+            // Dispatching login action
+            dispatch(login(userData));
+            // Storing user data in local storage
+            localStorage.setItem("userData", JSON.stringify(userData));
+            // Displaying success toast message
+            toast.success("Successfully logged in");
+            // Redirecting to home page
+            navigate("/");
+        } catch (error) {
+            console.error("Google authentication error:", error);
+            toast.error("Google authentication error");
+        }
+    };
+    
   return (
     <>
+     <GoogleOAuthProvider clientId="403350995020-264n3rfveb7f7986m3i6jsl36s97ier8.apps.googleusercontent.com">
     <ToastContainer/>
     <div className='bg-gray-100  flex items-center justify-center '> 
 
@@ -71,6 +103,13 @@ const Login = () => {
            <FaEye color='gray' className='absolute top-1/2 right-3 -translate-y-1/2'/>
            </div>
             <button className='bg-[#002D74] text-center rounded-xl text-white py-2 hover:bg-white hover:shadow-xl hover:text-[#002D74] cursor-pointer'>Login</button>
+            <GoogleLogin
+                    text="continue_with"
+                    onSuccess={handleGoogleLogin}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}
+                  />
 
 
         </form>
@@ -96,7 +135,7 @@ const Login = () => {
 </div>
 
     </div>
-      
+    </GoogleOAuthProvider>
     </>
   )
 }

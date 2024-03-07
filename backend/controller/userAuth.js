@@ -4,6 +4,7 @@ import userModel from "../model/userModel.js";
 // import token genarator
 import generateToken from "../utilitis/genrateToken.js";
 
+import jwt from 'jsonwebtoken'
 // import mailSender
 
 import { sendMail } from "../utilitis/mailSender.js";
@@ -153,10 +154,68 @@ const userProfile = async (req, res) => {
 }
 
 
+
+/**************************** User Google Login  *************************************/
+
+const googleLogin = async (req, res) => {
+    try {
+       
+       
+      const { idToken } = req.body;
+     
+  
+      const decodedToken = jwt.decode(idToken);
+      
+  
+      const { name, email, jti } = decodedToken;
+     
+      
+      const emailfind = await userModel.findOne({ useremail:email });
+     
+      if (emailfind) {
+        const existingUser = emailfind;
+  
+        const token = generateToken(existingUser?._id);
+  
+        return res.status(200).json({
+          _id: existingUser?._id,
+          name: existingUser?.name,
+          email: existingUser?.email,
+          phone: existingUser?.phone,
+         
+          token,
+        });
+      } else {
+      
+        const addUser = await userModel.create({
+          username: sanitize(name),
+          useremail: sanitize(email),
+          jti: sanitize(jti),
+        
+        });
+       
+       
+  
+        const token = generateToken(addUser._id);
+        return res.status(200).json({
+          _id: addUser?._id,
+          name: addUser?.name,
+          email: addUser?.email,
+          phone: addUser?.phone,
+          tagged: addUser?.tagged,
+          token,
+        });
+      }
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  };
+
 export {
     userSignup,
     loginUser,
     userSingupVerifyOtp,
-    userProfile
+    userProfile,
+    googleLogin
 
 };
