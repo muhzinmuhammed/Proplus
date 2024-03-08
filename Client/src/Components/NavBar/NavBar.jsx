@@ -25,7 +25,7 @@ function classNames(...classes) {
 
 export default function NavBar() {
     const user = useSelector(selectUser)
-    console.log(user);
+  
     const dispatch = useDispatch();
 
     useEffect(() => {

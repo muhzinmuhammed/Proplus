@@ -9,12 +9,20 @@ const courseSchema = new Schema(
       type: String,
       required: true,
     },
-    courseduration: {
-      type: Date,
-      required: true,
-    },
+    
     coursedescription: {
       type: String,
+      required: true,
+    },
+    title:{
+        type:String ,
+       
+      required: true,
+
+    },
+    coursedescription:{
+        type:String ,
+       
       required: true,
     },
     category: {

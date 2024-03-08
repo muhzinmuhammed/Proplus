@@ -5,6 +5,7 @@ import courseModel from "../model/courseModel.js";
 /* add course */
 
 const addCourses = (async (req, res) => {
+    console.log(req.body);
   try {
     const {
       coursename,
@@ -14,18 +15,20 @@ const addCourses = (async (req, res) => {
       userId,
       photo,
       coursefee,
+      title
       
     } = req.body;
 
-    if (!coursename || !courseduration || !coursedescription || !category || !userId||!photo||!coursefee) {
+    if (!coursename  || !coursedescription || !category || !userId||!photo||!coursefee||!title) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
     
-    const courseExits = await userModel.findOne({ coursename });
+    const courseExits = await courseModel.findOne({ coursename });
   
 
     if (courseExits ) {
+        console.log("ll");
         return res.status(409).json({ message: "Course already exists" });
     }
 
@@ -33,12 +36,13 @@ const addCourses = (async (req, res) => {
 
     const Course = await courseModel.create({
       coursename,
-      courseduration,
+      
       coursedescription,
       category,
       userId,
       photo,
       coursefee,
+      title
      
     });
     if (Course) {
@@ -50,6 +54,7 @@ const addCourses = (async (req, res) => {
         userId,
         photo,
         coursefee,
+        title
        
       });
     } else {
@@ -69,7 +74,7 @@ const getCourses =(async (req, res) => {
     const { id } = req.params;
 
     const courses = await courseModel
-      .find({ instructor: id })
+      .find({ userId: id })
       .populate("userId")
      
 
