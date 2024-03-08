@@ -7,16 +7,16 @@ import CourseModel from "../model/courseModel.js";
 
 const addLesson = (async (req, res) => {
   try {
-    const { video, coursename, title, duration, description } = req.body;
+    const { video, coursename, title, description } = req.body;
 
     const updatedCourse = await CourseModel.findOneAndUpdate(
-      { _id: coursename },
+      { coursename: coursename },
       {
         $push: {
           courseLessons: {
             video,
             title: title,
-            duration: duration,
+         
             description: description,
           },
         },
