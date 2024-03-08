@@ -25,7 +25,7 @@ const Login = () => {
         const userData = localStorage.getItem("userData");
         const parseData = userData ? JSON.parse(userData) : null;
         if (parseData) {
-          navigate("/");
+          navigate("/course");
         }else{
           navigate("/login");
     

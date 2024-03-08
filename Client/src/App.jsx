@@ -1,6 +1,6 @@
 import {  selectUser } from "./features/userSlice";
 import { Outlet,Navigate,Route,Routes,useLocation } from "react-router-dom"
-import { Home,Profile,Login,Register,ResetPassword, Otp, AddBookPage, MyBooksPage, AddLessonPage } from "./Pages"
+import { Home,Profile,Login,Register,ResetPassword, Otp, AddBookPage, MyBooksPage, AddLessonPage, AllBooksPage } from "./Pages"
 import { useSelector } from "react-redux"
 
 
@@ -34,6 +34,8 @@ function App() {
   <Route path="/add_course" element={<AddBookPage/>}/> 
   <Route path="/my_course" element={<MyBooksPage/>}/> 
   <Route path="/add_lesson" element={<AddLessonPage/>}/>
+  <Route path="/course" element={<AllBooksPage/>}/>
+
 
     
     <Route path="/register" element={<Register/>}/>

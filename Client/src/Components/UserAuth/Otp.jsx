@@ -53,7 +53,7 @@ const Otp = () => {
   
           dispatch(signup(userdata));
   
-          navigate("/");
+          navigate("/course");
         } else {
           // If the response contains a data property with an error message, use it; otherwise, provide a generic error message
           const errorMessage =

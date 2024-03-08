@@ -7,4 +7,5 @@ import Otp from "../Components/UserAuth/Otp";
 import AddBookPage from "./Course/AddCourse";
 import MyBooksPage from "./Course/MyCourse";
 import AddLessonPage from "./Course/AddLesson";
-export {Home,Login,Register,Profile,ResetPassword,Otp,AddBookPage,MyBooksPage,AddLessonPage}
+import AllBooksPage from "./Course/AllBook";
+export {Home,Login,Register,Profile,ResetPassword,Otp,AddBookPage,MyBooksPage,AddLessonPage,AllBooksPage}

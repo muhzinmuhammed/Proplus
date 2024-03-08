@@ -3,6 +3,7 @@ import {
     addCourses,
     editCourse,
     editCoursePage,
+    getAllCourses,
     getCourses,
   } from "../controller/courseController.js";
   import { addLesson,getLesson } from '../controller/lessonController.js';
@@ -14,6 +15,10 @@ import { protect } from "../middleware/protection.js";
   /*get all courses*/
 courseRouter.get("/allcourses/:id", protect, getCourses);
 /*get all courses*/
+
+  /*get all courses*/
+  courseRouter.get("/getcourses", protect, getAllCourses);
+  /*get all courses*/
 
 /*add lessons*/
 courseRouter.post("/addLesson", protect, addLesson);

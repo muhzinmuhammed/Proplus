@@ -91,6 +91,26 @@ const getCourses =(async (req, res) => {
 
 /* get all courses*/
 
+const getAllCourses =(async (req, res) => {
+    try {
+      
+  
+      const courses = await courseModel
+        .find()
+        .populate("userId")
+       
+  
+      if (courses) {
+        res.status(200).json({
+          courses,
+        });
+      }
+    } catch (error) {
+      res.status(500); // Internal server error
+      throw error;
+    }
+  });
+
 /* edit page */
 const editCoursePage = async (req, res) => {
   try {
@@ -191,4 +211,4 @@ const approvedCourse = async (req, res) => {
   
   /*unapproved course*/
 
-export {addCourses, getCourses, editCourse, editCoursePage,approvedCourse,unApprovedCourse };
+export {addCourses, getCourses, editCourse, editCoursePage,approvedCourse,unApprovedCourse,getAllCourses };
